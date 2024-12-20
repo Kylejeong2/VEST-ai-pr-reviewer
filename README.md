@@ -60,7 +60,7 @@ jobs:
     steps:
       - uses: vest-ai-pr-reviewer@latest
         env:
-          GITHUB_TOKEN: ${{ secrets.OFFICIAL_GITHUB_TOKEN }}
+          OFFICIAL_GITHUB_TOKEN: ${{ secrets.OFFICIAL_GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         with:
           debug: false
