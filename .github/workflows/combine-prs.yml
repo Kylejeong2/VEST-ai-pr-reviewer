@@ -46,7 +46,7 @@ jobs:
         id: fetch-branch-names
         name: Fetch branch names
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.OFFICIAL_GITHUB_TOKEN}}
           script: |
             const pulls = await github.paginate('GET /repos/:owner/:repo/pulls', {
               owner: context.repo.owner,
@@ -131,7 +131,7 @@ jobs:
           BASE_BRANCH: ${{ steps.fetch-branch-names.outputs.base-branch }}
           BRANCHES_1: ${{ steps.fetch-branch-names.outputs.branches-js }}
           COMBINE_NAME_1: ${{ env.COMBINE_BRANCH_NAME }}-js
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.OFFICIAL_GITHUB_TOKEN}}
         run: |
           set -x
           basebranch="${BASE_BRANCH%\"}"

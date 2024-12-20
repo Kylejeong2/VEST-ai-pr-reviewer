@@ -60,7 +60,7 @@ jobs:
     steps:
       - uses: vest-ai-pr-reviewer@latest
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.OFFICIAL_GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         with:
           debug: false
@@ -70,7 +70,7 @@ jobs:
 
 ### Environment variables
 
-- `GITHUB_TOKEN`: This should already be available to the GitHub Action
+- `OFFICIAL_GITHUB_TOKEN`: This should already be available to the GitHub Action
   environment. This is used to add comments to the pull request.
 - `ANTHROPIC_API_KEY`: use this to authenticate with Anthropic's Claude API. You can get one
   [here](https://console.anthropic.com/). Please add this key to your GitHub Action secrets.
