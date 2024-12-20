@@ -138,7 +138,10 @@ export class AnthropicOptions {
   model: string
   tokenLimits: TokenLimits
 
-  constructor(model = 'claude-3-sonnet-20241022', tokenLimits: TokenLimits | null = null) {
+  constructor(
+    model = 'claude-3-sonnet-20241022',
+    tokenLimits: TokenLimits | null = null
+  ) {
     this.model = model
     if (tokenLimits != null) {
       this.tokenLimits = tokenLimits

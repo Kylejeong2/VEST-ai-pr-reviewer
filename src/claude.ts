@@ -115,4 +115,4 @@ IMPORTANT: Entire response must be in the language with ISO code: ${this.options
 
     return [responseText, {}]
   }
-} 
+}
