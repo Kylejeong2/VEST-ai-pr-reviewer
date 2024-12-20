@@ -13943,7 +13943,7 @@ var createActionAuth = function createActionAuth2() {
     );
   }
   const definitions = [
-    process.env.OFFICIAL_GITHUB_TOKEN,
+    process.env.GITHUB_TOKEN,
     process.env.INPUT_GITHUB_TOKEN,
     process.env.INPUT_TOKEN
   ].filter(Boolean);
@@ -40644,7 +40644,7 @@ var plugin_throttling_dist_node = __nccwpck_require__(9968);
 
 
 
-const token = (0,core.getInput)('token') || process.env.OFFICIAL_GITHUB_TOKEN;
+const token = (0,core.getInput)('token') || process.env.GITHUB_TOKEN;
 const RetryAndThrottlingOctokit = dist_node.Octokit.plugin(plugin_throttling_dist_node.throttling, plugin_retry_dist_node/* retry */.XD);
 const octokit = new RetryAndThrottlingOctokit({
     auth: `token ${token}`,
