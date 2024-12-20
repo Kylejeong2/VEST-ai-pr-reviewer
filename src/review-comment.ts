@@ -1,7 +1,7 @@
 import {info, warning} from '@actions/core'
 // eslint-disable-next-line camelcase
 import {context as github_context} from '@actions/github'
-import {type Bot} from './bot'
+import {Bot} from './claude'
 import {
   Commenter,
   COMMENT_REPLY_TAG,
@@ -17,7 +17,7 @@ import {getTokenCount} from './tokenizer'
 // eslint-disable-next-line camelcase
 const context = github_context
 const repo = context.repo
-const ASK_BOT = '@coderabbitai'
+const ASK_BOT = '@vest-ai'
 
 export const handleReviewComment = async (
   heavyBot: Bot,

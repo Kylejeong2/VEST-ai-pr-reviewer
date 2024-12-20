@@ -11,16 +11,15 @@ export class Options {
   reviewCommentLGTM: boolean
   pathFilters: PathFilter
   systemMessage: string
-  openaiLightModel: string
-  openaiHeavyModel: string
-  openaiModelTemperature: number
-  openaiRetries: number
-  openaiTimeoutMS: number
-  openaiConcurrencyLimit: number
+  anthropicLightModel: string
+  anthropicHeavyModel: string
+  modelTemperature: number
+  apiRetries: number
+  apiTimeoutMS: number
+  apiConcurrencyLimit: number
   githubConcurrencyLimit: number
   lightTokenLimits: TokenLimits
   heavyTokenLimits: TokenLimits
-  apiBaseUrl: string
   language: string
 
   constructor(
@@ -32,14 +31,13 @@ export class Options {
     reviewCommentLGTM = false,
     pathFilters: string[] | null = null,
     systemMessage = '',
-    openaiLightModel = 'gpt-3.5-turbo',
-    openaiHeavyModel = 'gpt-3.5-turbo',
-    openaiModelTemperature = '0.0',
-    openaiRetries = '3',
-    openaiTimeoutMS = '120000',
-    openaiConcurrencyLimit = '6',
+    anthropicLightModel = 'claude-3-haiku-20241022',
+    anthropicHeavyModel = 'claude-3-sonnet-20241022',
+    modelTemperature = '0.0',
+    apiRetries = '3',
+    apiTimeoutMS = '120000',
+    apiConcurrencyLimit = '6',
     githubConcurrencyLimit = '6',
-    apiBaseUrl = 'https://api.openai.com/v1',
     language = 'en-US'
   ) {
     this.debug = debug
@@ -50,16 +48,15 @@ export class Options {
     this.reviewCommentLGTM = reviewCommentLGTM
     this.pathFilters = new PathFilter(pathFilters)
     this.systemMessage = systemMessage
-    this.openaiLightModel = openaiLightModel
-    this.openaiHeavyModel = openaiHeavyModel
-    this.openaiModelTemperature = parseFloat(openaiModelTemperature)
-    this.openaiRetries = parseInt(openaiRetries)
-    this.openaiTimeoutMS = parseInt(openaiTimeoutMS)
-    this.openaiConcurrencyLimit = parseInt(openaiConcurrencyLimit)
+    this.anthropicLightModel = anthropicLightModel
+    this.anthropicHeavyModel = anthropicHeavyModel
+    this.modelTemperature = parseFloat(modelTemperature)
+    this.apiRetries = parseInt(apiRetries)
+    this.apiTimeoutMS = parseInt(apiTimeoutMS)
+    this.apiConcurrencyLimit = parseInt(apiConcurrencyLimit)
     this.githubConcurrencyLimit = parseInt(githubConcurrencyLimit)
-    this.lightTokenLimits = new TokenLimits(openaiLightModel)
-    this.heavyTokenLimits = new TokenLimits(openaiHeavyModel)
-    this.apiBaseUrl = apiBaseUrl
+    this.lightTokenLimits = new TokenLimits(anthropicLightModel)
+    this.heavyTokenLimits = new TokenLimits(anthropicHeavyModel)
     this.language = language
   }
 
@@ -73,16 +70,15 @@ export class Options {
     info(`review_comment_lgtm: ${this.reviewCommentLGTM}`)
     info(`path_filters: ${this.pathFilters}`)
     info(`system_message: ${this.systemMessage}`)
-    info(`openai_light_model: ${this.openaiLightModel}`)
-    info(`openai_heavy_model: ${this.openaiHeavyModel}`)
-    info(`openai_model_temperature: ${this.openaiModelTemperature}`)
-    info(`openai_retries: ${this.openaiRetries}`)
-    info(`openai_timeout_ms: ${this.openaiTimeoutMS}`)
-    info(`openai_concurrency_limit: ${this.openaiConcurrencyLimit}`)
+    info(`anthropic_light_model: ${this.anthropicLightModel}`)
+    info(`anthropic_heavy_model: ${this.anthropicHeavyModel}`)
+    info(`model_temperature: ${this.modelTemperature}`)
+    info(`api_retries: ${this.apiRetries}`)
+    info(`api_timeout_ms: ${this.apiTimeoutMS}`)
+    info(`api_concurrency_limit: ${this.apiConcurrencyLimit}`)
     info(`github_concurrency_limit: ${this.githubConcurrencyLimit}`)
     info(`summary_token_limits: ${this.lightTokenLimits.string()}`)
     info(`review_token_limits: ${this.heavyTokenLimits.string()}`)
-    info(`api_base_url: ${this.apiBaseUrl}`)
     info(`language: ${this.language}`)
   }
 
@@ -138,11 +134,11 @@ export class PathFilter {
   }
 }
 
-export class OpenAIOptions {
+export class AnthropicOptions {
   model: string
   tokenLimits: TokenLimits
 
-  constructor(model = 'gpt-3.5-turbo', tokenLimits: TokenLimits | null = null) {
+  constructor(model = 'claude-3-sonnet-20241022', tokenLimits: TokenLimits | null = null) {
     this.model = model
     if (tokenLimits != null) {
       this.tokenLimits = tokenLimits
